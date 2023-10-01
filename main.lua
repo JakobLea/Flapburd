@@ -10,6 +10,7 @@ require 'PipePair'
 
 require 'StateMachine'
 require 'states/BaseState'
+require 'states/CountdownState'
 require 'states/PlayState'
 require 'states/ScoreState'
 require 'states/TitleScreenState'
@@ -53,7 +54,7 @@ function love.load()
     smallFont = love.graphics.newFont('font.ttf', 8)
     mediumFont = love.graphics.newFont('flappy.ttf', 14)
     flappyFont = love.graphics.newFont('flappy.ttf', 28)
-    hugeFont = love.graphics.newFont('flappy.ttf', 56)
+    hugeFont = love.graphics.newFont('flappy.ttf', 56)   
     love.graphics.setFont(flappyFont)
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
@@ -64,6 +65,7 @@ function love.load()
 
     gStateMachine = StateMachine {
         ['title'] = function() return TitleScreenState() end,
+        ['countdown'] = function() return CountdownState() end,
         ['play'] = function() return PlayState() end,
         ['score'] = function() return ScoreState() end
     }
