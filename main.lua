@@ -22,10 +22,10 @@ WINDOW_HEIGHT = 720
 VIRTUAL_WIDTH = 512
 VIRTUAL_HEIGHT = 288
 
-local background = love.graphics.newImage('background.png')
+local background = love.graphics.newImage('image/background.png')
 local backgroundScroll = 0
 
-local ground = love.graphics.newImage('ground.png')
+local ground = love.graphics.newImage('image/ground.png')
 local groundScroll = 0
 
 local BACKGROUND_SCROLL_SPEED = 30
@@ -51,11 +51,22 @@ function love.load()
 
     love.window.setTitle('Im Birdman, thats who I am. In Paris. Brr brr')
 
-    smallFont = love.graphics.newFont('font.ttf', 8)
-    mediumFont = love.graphics.newFont('flappy.ttf', 14)
-    flappyFont = love.graphics.newFont('flappy.ttf', 28)
-    hugeFont = love.graphics.newFont('flappy.ttf', 56)   
+    smallFont = love.graphics.newFont('font/font.ttf', 8)
+    mediumFont = love.graphics.newFont('font/flappy.ttf', 14)
+    flappyFont = love.graphics.newFont('font/flappy.ttf', 28)
+    hugeFont = love.graphics.newFont('font/flappy.ttf', 56)   
     love.graphics.setFont(flappyFont)
+
+    sounds = {
+        ['jump'] = love.audio.newSource('sounds/jump.wav', 'static'),
+        ['explosion'] = love.audio.newSource('sounds/explosion.wav', 'static'),
+        ['hurt'] = love.audio.newSource('sounds/hurt.wav', 'static'),
+        ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
+        ['music'] = love.audio.newSource('sounds/marios_way.mp3', 'static')
+    }
+
+    sounds['music']:setLooping(true)
+    sounds['music']:play()
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         vsync = true,

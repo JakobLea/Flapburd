@@ -3,7 +3,7 @@ Bird = Class{}
 local GRAVITY = 10
 
 function Bird:init()
-    self.image = love.graphics.newImage('bird.png')
+    self.image = love.graphics.newImage('image/bird.png')
     self.width = self.image:getWidth()
     self.height = self.image:getHeight()
 
@@ -27,7 +27,8 @@ function Bird:update(dt)
     self.dy = self.dy + GRAVITY * dt
 
     if love.keyboard.wasPressed('space') then
-        self.dy = -1.5
+        self.dy = -2
+        sounds['jump']:play()
     end
 
     self.y = self.y + self.dy
