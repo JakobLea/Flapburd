@@ -66,6 +66,7 @@ function love.load()
     }
 
     sounds['music']:setLooping(true)
+    sounds['music']:setVolume(0.6)
     sounds['music']:play()
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
