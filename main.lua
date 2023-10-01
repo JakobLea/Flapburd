@@ -11,6 +11,7 @@ require 'PipePair'
 require 'StateMachine'
 require 'states/BaseState'
 require 'states/PlayState'
+require 'states/ScoreState'
 require 'states/TitleScreenState'
 
 
@@ -64,6 +65,7 @@ function love.load()
     gStateMachine = StateMachine {
         ['title'] = function() return TitleScreenState() end,
         ['play'] = function() return PlayState() end,
+        ['score'] = function() return ScoreState() end
     }
     gStateMachine:change('title')
 
