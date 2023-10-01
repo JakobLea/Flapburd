@@ -17,10 +17,10 @@ require 'states/TitleScreenState'
 
 
 WINDOW_WIDTH = 1280
-WINDOW_HEIGHT = 720
+WINDOW_HEIGHT = 678
 
 VIRTUAL_WIDTH = 512
-VIRTUAL_HEIGHT = 288
+VIRTUAL_HEIGHT = 271
 
 local background = love.graphics.newImage('image/background.png')
 local backgroundScroll = 0
