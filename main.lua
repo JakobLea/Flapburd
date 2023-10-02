@@ -57,6 +57,12 @@ function love.load()
     hugeFont = love.graphics.newFont('font/flappy.ttf', 56)   
     love.graphics.setFont(flappyFont)
 
+    medals = {
+        ['bronze'] = love.graphics.newImage('image/bronze.png'),
+        ['silver'] = love.graphics.newImage('image/silver.png'),
+        ['gold'] = love.graphics.newImage('image/gold.png')
+    }
+
     sounds = {
         ['jump'] = love.audio.newSource('sounds/jump.wav', 'static'),
         ['explosion'] = love.audio.newSource('sounds/explosion.wav', 'static'),

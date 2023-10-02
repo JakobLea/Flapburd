@@ -7,6 +7,7 @@ PIPE_HEIGHT = 288
 BIRD_WIDTH = 38
 BIRD_HEIGHT = 24
 
+
 function PlayState:init()
     self.bird = Bird()
     self.pipePairs = {}
@@ -88,4 +89,14 @@ function PlayState:render()
     love.graphics.print('Score ' .. tostring(self.score), 5, 15)
 
     self.bird:render()
+
+    if self.score >= 30 then
+        love.graphics.draw(medals['bronze'], VIRTUAL_WIDTH / 2 - medals['bronze']:getWidth() / 1 - 225, 50)
+    end
+    if self.score >= 60 then
+        love.graphics.draw(medals['silver'], VIRTUAL_WIDTH / 2 - medals['silver']:getWidth() / 1 - 207, 54)
+    end
+    if self.score >= 100 then
+        love.graphics.draw(medals['gold'], VIRTUAL_WIDTH / 2 - medals['gold']:getWidth() / 1 - 189, 58)
+    end
 end
