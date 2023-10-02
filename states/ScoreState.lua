@@ -14,11 +14,11 @@ end
 function ScoreState:render()
     love.graphics.setFont(flappyFont)
        -- Change the game over message based on the score
-    if self.score >= 3 then
+    if self.score >= 100 then
         love.graphics.printf('Congratulations!\nYou won the gold medal!', 0, 24, VIRTUAL_WIDTH, 'center')
-    elseif self.score >= 2 then
+    elseif self.score >= 60 then
         love.graphics.printf('Great job!\nYou won the silver medal!', 0, 24, VIRTUAL_WIDTH, 'center')
-    elseif self.score >= 1 then
+    elseif self.score >= 30 then
         love.graphics.printf('Nice try!\nYou won the bronze medal!', 0, 24, VIRTUAL_WIDTH, 'center')
     else
         love.graphics.printf('Oof! You lost!', 0, 24, VIRTUAL_WIDTH, 'center')
