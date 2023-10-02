@@ -63,20 +63,23 @@ function love.load()
     medals = {
         ['bronze'] = love.graphics.newImage('image/bronze.png'),
         ['silver'] = love.graphics.newImage('image/silver.png'),
-        ['gold'] = love.graphics.newImage('image/gold.png')
-    }
+        ['gold'] = love.graphics.newImage('image/gold.png'),
+        }
+
+
 
     sounds = {
         ['jump'] = love.audio.newSource('sounds/jump.wav', 'static'),
         ['explosion'] = love.audio.newSource('sounds/explosion.wav', 'static'),
         ['hurt'] = love.audio.newSource('sounds/hurt.wav', 'static'),
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
-        ['music'] = love.audio.newSource('sounds/marios_way.mp3', 'static'),
+        ['music'] = love.audio.newSource('sounds/Batman.mp3', 'static'),
         ['pause'] = love.audio.newSource('sounds/pause.mp3', 'static')
     }
 
+    sounds['jump']:setVolume(0.6)
     sounds['music']:setLooping(true)
-    sounds['music']:setVolume(0.6)
+    sounds['music']:setVolume(1)
     sounds['music']:play()
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {

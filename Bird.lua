@@ -1,6 +1,7 @@
 Bird = Class{}
 
 local GRAVITY = 10
+local MAX_HEIGHT_ABOVE_SCREEN = -30  
 
 function Bird:init()
     self.image = love.graphics.newImage('image/griffiths.png')
@@ -29,6 +30,12 @@ function Bird:update(dt)
     if love.keyboard.wasPressed('space') or love.mouse.wasPressed(1) then
         self.dy = -2
         sounds['jump']:play()
+    end
+
+     -- Restrict the bird from going too high above the screen
+     if self.y > MAX_HEIGHT_ABOVE_SCREEN then
+    else
+        self.y = MAX_HEIGHT_ABOVE_SCREEN
     end
 
     self.y = self.y + self.dy
