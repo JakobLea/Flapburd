@@ -1,5 +1,7 @@
 StateMachine = Class{}
 
+local currentState
+
 function StateMachine:init(states)
 	self.empty = {
 		render = function() end,
@@ -12,6 +14,7 @@ function StateMachine:init(states)
 end
 
 function StateMachine:change(stateName, enterParams)
+	currentState = stateName
 	assert(self.states[stateName]) 
 	self.current:exit()
 	self.current = self.states[stateName]()
@@ -20,6 +23,10 @@ end
 
 function StateMachine:update(dt)
 	self.current:update(dt)
+end
+
+function StateMachine:currentStateName()
+	return currentState
 end
 
 function StateMachine:render()

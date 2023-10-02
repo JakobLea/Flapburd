@@ -28,6 +28,9 @@ local backgroundScroll = 0
 local ground = love.graphics.newImage('image/ground.png')
 local groundScroll = 0
 
+local scrolling = true
+local PAUSE_IMAGE = love.graphics.newImage('image/pause_icon.png')
+
 local BACKGROUND_SCROLL_SPEED = 30
 local GROUND_SCROLL_SPEED = 60
 
@@ -68,7 +71,8 @@ function love.load()
         ['explosion'] = love.audio.newSource('sounds/explosion.wav', 'static'),
         ['hurt'] = love.audio.newSource('sounds/hurt.wav', 'static'),
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
-        ['music'] = love.audio.newSource('sounds/marios_way.mp3', 'static')
+        ['music'] = love.audio.newSource('sounds/marios_way.mp3', 'static'),
+        ['pause'] = love.audio.newSource('sounds/pause.mp3', 'static')
     }
 
     sounds['music']:setLooping(true)
@@ -120,11 +124,24 @@ function love.mouse.wasPressed(button)
 end
 
 function love.update(dt)
-    backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % 
-        BACKGROUND_LOOPING_POINT
-    groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
 
-    gStateMachine:update(dt)
+    if love.keyboard.wasPressed('p') and gStateMachine:currentStateName() == 'play' then
+        if scrolling then
+            sounds['music']:pause()
+        else
+            sounds['music']:play()
+        end
+        sounds['pause']:play()
+        scrolling = not scrolling
+    end
+
+    if scrolling then
+        backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % 
+            BACKGROUND_LOOPING_POINT
+        groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
+
+        gStateMachine:update(dt)
+    end
 
     love.keyboard.keysPressed = {}
     love.mouse.buttonsPressed = {}
@@ -138,6 +155,14 @@ function love.draw()
     love.graphics.draw(background, -backgroundScroll, 0)
     gStateMachine:render()
     love.graphics.draw(ground, -groundScroll, VIRTUAL_HEIGHT - 16)
+
+    if not scrolling then
+        love.graphics.draw(PAUSE_IMAGE, VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2, 0, 1, 1, PAUSE_IMAGE:getWidth() / 2, PAUSE_IMAGE:getHeight() / 2)
+        love.graphics.setFont(flappyFont)
+        love.graphics.printf('GAME PAUSED', 0, VIRTUAL_HEIGHT / 2 - 56, VIRTUAL_WIDTH, 'center')
+        love.graphics.setFont(mediumFont)
+        love.graphics.printf('Press "p" To Resume Game', 0, VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH, 'center')
+    end
 
     push:finish()
     displayFPS()
