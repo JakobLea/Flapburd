@@ -1,6 +1,6 @@
 PlayState = Class{__includes = BaseState}
 
-PIPE_SPEED = 60
+PIPE_SPEED = 100
 PIPE_WIDTH = 70
 PIPE_HEIGHT = 288
 
@@ -30,7 +30,7 @@ function PlayState:update(dt)
 
         table.insert(self.pipePairs, PipePair(y))
 
-        spawnTimeLimit = math.random(2, 3.5)
+        spawnTimeLimit = math.random(1, 2.5)
 
         self.timer = 0
     end

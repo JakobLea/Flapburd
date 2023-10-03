@@ -15,7 +15,7 @@ function Bird:init()
 end
 
 function Bird:collides(pipe)
-    if (self.x - 5) + (self.width - 5) >= pipe.x and self.x + 7 <= pipe.x + PIPE_WIDTH then
+    if (self.x - 5) + (self.width - 30) >= pipe.x and self.x + 7 <= pipe.x + PIPE_WIDTH then
         if (self.y - 5) + (self.height - 5) >= pipe.y and self.y + 7 <= pipe.y + PIPE_HEIGHT then
             return true
         end

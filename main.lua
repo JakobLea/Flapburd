@@ -22,21 +22,21 @@ WINDOW_HEIGHT = 678
 VIRTUAL_WIDTH = 512
 VIRTUAL_HEIGHT = 271
 
-local background = love.graphics.newImage('image/background.png')
+local background = love.graphics.newImage('image/back.png')
 local backgroundScroll = 0
 
-local ground = love.graphics.newImage('image/ground.png')
+local ground = love.graphics.newImage('image/ground2.png')
 local groundScroll = 0
 
 local scrolling = true
 local PAUSE_IMAGE = love.graphics.newImage('image/pause_icon.png')
 
-local BACKGROUND_SCROLL_SPEED = 30
-local GROUND_SCROLL_SPEED = 60
+local BACKGROUND_SCROLL_SPEED = 60
+local GROUND_SCROLL_SPEED = 100
 
-local BACKGROUND_LOOPING_POINT = 413
+local BACKGROUND_LOOPING_POINT = 1240
 
-local GROUND_LOOPING_POINT = 514
+local GROUND_LOOPING_POINT = 420
 
 
 local bird = Bird()
@@ -73,7 +73,7 @@ function love.load()
         ['explosion'] = love.audio.newSource('sounds/explosion.wav', 'static'),
         ['hurt'] = love.audio.newSource('sounds/hurt.wav', 'static'),
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
-        ['music'] = love.audio.newSource('sounds/Batman.mp3', 'static'),
+        ['music'] = love.audio.newSource('sounds/Batman2.mp3', 'static'),
         ['pause'] = love.audio.newSource('sounds/pause.mp3', 'static')
     }
 
@@ -130,9 +130,9 @@ function love.update(dt)
 
     if love.keyboard.wasPressed('p') and gStateMachine:currentStateName() == 'play' then
         if scrolling then
-            sounds['music']:pause()
+            sounds['music']:setVolume(0.2)
         else
-            sounds['music']:play()
+            sounds['music']:setVolume(1)
         end
         sounds['pause']:play()
         scrolling = not scrolling

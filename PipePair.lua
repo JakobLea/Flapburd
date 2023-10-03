@@ -17,7 +17,7 @@ function PipePair:init(y)
 end
 
 function PipePair:update(dt)
-    if self.x > -PIPE_WIDTH then
+    if self.x > -PIPE_WIDTH - 40 then
         self.x = self.x - PIPE_SPEED * dt
         self.pipes['lower'].x = self.x
         self.pipes['upper'].x = self.x
